@@ -1,6 +1,6 @@
 class_name Unit extends Node
 
-enum TEAM {ENEMY, ALLY}
+enum TEAM {ALLY, ENEMY}
 
 @export var Team : TEAM
 
@@ -12,7 +12,7 @@ enum TEAM {ENEMY, ALLY}
 @export_category("External Nodes")
 @export var attack_range : RayCast2D
 @export var cooldown : Timer
-@export var anims : AnimationPlayer
+@export var anims : AnimatedSprite2D
 
 func _ready() -> void:
 	pass
@@ -25,11 +25,15 @@ func _physics_process(delta: float) -> void:
 		
 	
 func move(delta : float):
-	self.transform.position.x += speed * delta
+	self.position.x += speed * delta
 	
 func attack():
 	if cooldown.is_stopped():
-		anims.play("attack")
+		if anims.animation != "attack":
+			anims.play("attack")
+			await anims.animation_finished
+			anims.play("default")
+		cooldown.start()
 	
 func take_dmg(dmg):
 	health -= dmg

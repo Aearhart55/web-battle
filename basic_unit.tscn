@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpf060j85153o"]
+
+[ext_resource type="Script" uid="uid://8kr1tiq28xdo" path="res://unit.gd" id="1_dxuyo"]
+[ext_resource type="Texture2D" uid="uid://rf87sre8ttwj" path="res://farmer_sprites.png" id="2_w2ktf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruwid"]
+size = Vector2(8.833334, 17.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gp7b"]
+atlas = ExtResource("2_w2ktf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25uv2"]
+atlas = ExtResource("2_w2ktf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2oge6"]
+atlas = ExtResource("2_w2ktf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yul4q"]
+atlas = ExtResource("2_w2ktf")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqmv6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gp7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25uv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2oge6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yul4q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="basic unit" type="CharacterBody2D" node_paths=PackedStringArray("attack_range", "cooldown", "anims")]
+texture_filter = 1
+scale = Vector2(6, 6)
+motion_mode = 1
+script = ExtResource("1_dxuyo")
+health = 10
+speed = 50.0
+attack_range = NodePath("RayCast2D")
+cooldown = NodePath("Timer")
+anims = NodePath("AnimatedSprite2D")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(30, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.083333015, 0.75)
+shape = SubResource("RectangleShape2D_ruwid")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qqmv6")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
