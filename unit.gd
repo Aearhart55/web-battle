@@ -35,10 +35,8 @@ func attack():
 	if cooldown.is_stopped() and anims.animation != "windup":
 		anims.play("windup")
 		await anims.animation_finished
-		while units_hit < aoe_value or not attack_range.is_colliding():
-			attack_range.get_collider().call("take_dmg", damage)
-			attack_range.add_exception(attack_range.get_collider())
-			units_hit += 1
+		attack_range.get_collider().call("take_dmg", damage)
+				
 		attack_range.clear_exceptions()
 		units_hit = 0
 		anims.play("recover")

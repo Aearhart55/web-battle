@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cycy5erh7g2pn"]
+[gd_scene load_steps=5 format=3 uid="uid://cycy5erh7g2pn"]
 
 [ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://basic_unit.tscn" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://cnlvmolvge8ac" path="res://icon.svg" id="2_h2yge"]
+
+[sub_resource type="GDScript" id="GDScript_0xm2m"]
+script/source = "extends CharacterBody2D
+
+func take_dmg(dmg):
+	print(dmg)
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(132, 128)
@@ -9,21 +16,38 @@ size = Vector2(132, 128)
 [node name="Main" type="Node2D"]
 
 [node name="basic unit" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(940, 408.00003)
+position = Vector2(822.00006, 424)
 Team = 1
 
 [node name="basic unit2" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(133, 412.00003)
+position = Vector2(110, 220)
+damage = 2
+aoe_value = 2
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(587, 188)
+position = Vector2(678, 223)
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
+script = SubResource("GDScript_0xm2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
 texture = ExtResource("2_h2yge")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(678, 223)
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+script = SubResource("GDScript_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
+texture = ExtResource("2_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_1bvp3")
