@@ -20,9 +20,8 @@ position = Vector2(822.00006, 424)
 Team = 1
 
 [node name="basic unit2" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(110, 220)
+position = Vector2(127, 419)
 damage = 2
-aoe_value = 2
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(678, 223)

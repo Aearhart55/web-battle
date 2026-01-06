@@ -24,9 +24,9 @@ func _physics_process(delta: float) -> void:
 	if attack_range.is_colliding():
 		attack()
 	else:
-		move(delta)
-		if not anims.is_playing() and anims.animation != "idle":
-			anims.play("idle")
+		if anims.animation == "idle" or anims.animation == "move" or not anims.is_playing():
+			move(delta)
+			anims.play("move")
 		
 func move(delta : float):
 	self.position.x += speed * delta
