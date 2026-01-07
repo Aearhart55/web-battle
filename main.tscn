@@ -20,8 +20,10 @@ position = Vector2(822.00006, 424)
 Team = 1
 
 [node name="basic unit2" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(127, 419)
-damage = 2
+position = Vector2(363, 428)
+
+[node name="basic unit3" parent="." instance=ExtResource("1_0xm2m")]
+position = Vector2(140, 204)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(678, 223)

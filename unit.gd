@@ -16,14 +16,15 @@ enum TEAM {ALLY, ENEMY}
 @export var anims : AnimatedSprite2D
 
 var units_hit := 0
+var dead = false
 
 func _ready() -> void:
 	set_team(Team)
 	
 func _physics_process(delta: float) -> void:
-	if attack_range.is_colliding():
+	if attack_range.is_colliding() and not dead:
 		attack()
-	else:
+	elif not dead:
 		if anims.animation == "idle" or anims.animation == "move" or not anims.is_playing():
 			move(delta)
 			anims.play("move")
@@ -35,7 +36,8 @@ func attack():
 	if cooldown.is_stopped() and anims.animation != "windup":
 		anims.play("windup")
 		await anims.animation_finished
-		attack_range.get_collider().call("take_dmg", damage)
+		if attack_range.is_colliding():
+			attack_range.get_collider().call("take_dmg", damage)
 				
 		attack_range.clear_exceptions()
 		units_hit = 0
@@ -50,6 +52,11 @@ func take_dmg(dmg):
 		die()
 	
 func die():
+	self.collision_layer = 0
+	self.collision_mask = 0
+	attack_range.enabled = false
+	anims.play("die")
+	await anims.animation_finished
 	queue_free()
 
 func set_team(team : TEAM):
