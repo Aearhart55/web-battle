@@ -8,14 +8,12 @@ enum TEAM {ALLY, ENEMY}
 @export var health : int = 3
 @export var speed : float = 1
 @export var damage : int = 1
-@export var aoe_value : int = 1
 
 @export_category("External Nodes")
 @export var attack_range : RayCast2D
 @export var cooldown : Timer
 @export var anims : AnimatedSprite2D
 
-var units_hit := 0
 var dead = false
 
 func _ready() -> void:
@@ -40,7 +38,6 @@ func attack():
 			attack_range.get_collider().call("take_dmg", damage)
 				
 		attack_range.clear_exceptions()
-		units_hit = 0
 		anims.play("recover")
 		cooldown.start()
 		await anims.animation_finished

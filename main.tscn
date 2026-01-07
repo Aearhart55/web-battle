@@ -1,54 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cycy5erh7g2pn"]
-
-[ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://basic_unit.tscn" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://cnlvmolvge8ac" path="res://icon.svg" id="2_h2yge"]
-
-[sub_resource type="GDScript" id="GDScript_0xm2m"]
-script/source = "extends CharacterBody2D
-
-func take_dmg(dmg):
-	print(dmg)
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
-size = Vector2(132, 128)
+[gd_scene format=3 uid="uid://cycy5erh7g2pn"]
 
 [node name="Main" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [80.0]
 
-[node name="basic unit" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(822.00006, 424)
-Team = 1
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 160.0
 
-[node name="basic unit2" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(363, 428)
-
-[node name="basic unit3" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(140, 204)
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(678, 223)
-collision_layer = 2
-collision_mask = 2
-motion_mode = 1
-script = SubResource("GDScript_0xm2m")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_1bvp3")
-
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
-position = Vector2(678, 223)
-collision_layer = 2
-collision_mask = 2
-motion_mode = 1
-script = SubResource("GDScript_0xm2m")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D2"]
-texture = ExtResource("2_h2yge")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_1bvp3")
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
