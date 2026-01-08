@@ -177,6 +177,7 @@ animations = [{
 
 [node name="basic unit" type="CharacterBody2D" node_paths=PackedStringArray("attack_range", "cooldown", "anims")]
 texture_filter = 1
+scale = Vector2(5, 5)
 motion_mode = 1
 script = ExtResource("1_dxuyo")
 speed = 100.0
