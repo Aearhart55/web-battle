@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cycy5erh7g2pn"]
+[gd_scene load_steps=5 format=3 uid="uid://cycy5erh7g2pn"]
 
 [ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://basic_unit.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://kl3jce73cms2" path="res://unit_button.tscn" id="1_h2yge"]
 [ext_resource type="FontFile" uid="uid://b3g3f7fhyk6ro" path="res://Micro5-Regular.ttf" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dxs8jvn6xfpye" path="res://base.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [400.0]
@@ -28,6 +29,7 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
+theme_override_constants/separation = 25
 alignment = 1
 
 [node name="Container" type="PanelContainer" parent="UI/HBoxContainer"]
@@ -36,6 +38,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="unit_button" parent="UI/HBoxContainer/Container" instance=ExtResource("1_h2yge")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/Container"]
 layout_mode = 2
@@ -51,6 +54,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
 [node name="unit_button" parent="UI/HBoxContainer/Container2" instance=ExtResource("1_h2yge")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/Container2"]
 layout_mode = 2
@@ -66,6 +70,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
 [node name="unit_button" parent="UI/HBoxContainer/Container3" instance=ExtResource("1_h2yge")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/Container3"]
 layout_mode = 2
@@ -81,6 +86,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
 [node name="unit_button" parent="UI/HBoxContainer/Container4" instance=ExtResource("1_h2yge")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/Container4"]
 layout_mode = 2
@@ -96,6 +102,7 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
 [node name="unit_button" parent="UI/HBoxContainer/Container5" instance=ExtResource("1_h2yge")]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/HBoxContainer/Container5"]
 layout_mode = 2
@@ -107,4 +114,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="basic unit" parent="." instance=ExtResource("1_0xm2m")]
-position = Vector2(67, 315.00006)
+position = Vector2(120, 355)
+
+[node name="base" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(56, 318)
+
+[node name="base2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(1083, 318)
+Team = 1
