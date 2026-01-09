@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://kl3jce73cms2"]
+[gd_scene load_steps=6 format=3 uid="uid://kl3jce73cms2"]
 
 [ext_resource type="Texture2D" uid="uid://chwubxa4n5glr" path="res://blank_icon.png" id="1_ent0a"]
 [ext_resource type="Script" uid="uid://737m263lhjyy" path="res://unit_button.gd" id="2_ent0a"]
+[ext_resource type="FontFile" uid="uid://b3g3f7fhyk6ro" path="res://Micro5-Regular.ttf" id="3_b1gk3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1gk3"]
 
@@ -10,6 +11,7 @@ bg_color = Color(0, 0, 0, 0.57254905)
 
 [node name="unit_button" type="TextureButton"]
 texture_filter = 1
+custom_minimum_size = Vector2(200, 200)
 offset_right = 200.0
 offset_bottom = 200.0
 texture_normal = ExtResource("1_ent0a")
@@ -30,5 +32,24 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8j4a4")
 max_value = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -65.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_b1gk3")
+theme_override_font_sizes/font_size = 64
+text = "$10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

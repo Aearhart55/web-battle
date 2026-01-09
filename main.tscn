@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cycy5erh7g2pn"]
+[gd_scene load_steps=4 format=3 uid="uid://cycy5erh7g2pn"]
 
 [ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://basic_unit.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://kl3jce73cms2" path="res://unit_button.tscn" id="1_h2yge"]
-[ext_resource type="FontFile" uid="uid://b3g3f7fhyk6ro" path="res://Micro5-Regular.ttf" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dxs8jvn6xfpye" path="res://base.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
@@ -15,7 +14,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+[node name="unit_card_bar" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -32,86 +31,20 @@ mouse_filter = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Container" type="PanelContainer" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="unit_button" parent="UI/HBoxContainer/Container" instance=ExtResource("1_h2yge")]
+[node name="slot_one" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/HBoxContainer/Container"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_h2yge")
-theme_override_font_sizes/font_size = 64
-text = "$10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Container2" type="PanelContainer" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="slot_two" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
 
-[node name="unit_button" parent="UI/HBoxContainer/Container2" instance=ExtResource("1_h2yge")]
+[node name="slot_three" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/HBoxContainer/Container2"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_h2yge")
-theme_override_font_sizes/font_size = 64
-text = "$10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Container3" type="PanelContainer" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+[node name="slot_four" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
 
-[node name="unit_button" parent="UI/HBoxContainer/Container3" instance=ExtResource("1_h2yge")]
+[node name="slot_five" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/HBoxContainer/Container3"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_h2yge")
-theme_override_font_sizes/font_size = 64
-text = "$10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Container4" type="PanelContainer" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-
-[node name="unit_button" parent="UI/HBoxContainer/Container4" instance=ExtResource("1_h2yge")]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/HBoxContainer/Container4"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_h2yge")
-theme_override_font_sizes/font_size = 64
-text = "$10"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Container5" type="PanelContainer" parent="UI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-
-[node name="unit_button" parent="UI/HBoxContainer/Container5" instance=ExtResource("1_h2yge")]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="UI/HBoxContainer/Container5"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_fonts/font = ExtResource("2_h2yge")
-theme_override_font_sizes/font_size = 64
-text = "$10"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="basic unit" parent="." instance=ExtResource("1_0xm2m")]
 position = Vector2(120, 355)
