@@ -1,8 +1,6 @@
 class_name Unit extends Node
 
-enum TEAM {ALLY, ENEMY}
-
-@export var Team : TEAM
+@export var Team : Global.TEAM
 
 @export_category("Stats")
 @export var health : int = 3
@@ -56,16 +54,16 @@ func die():
 	await anims.animation_finished
 	queue_free()
 
-func set_team(team : TEAM):
+func set_team(team : Global.TEAM):
 	Team = team
-	if Team == TEAM.ENEMY:
+	if Team == Global.TEAM.ENEMY:
 		anims.flip_h = true
 		speed *= -1
 		attack_range.target_position.x *= -1
 		attack_range.collision_mask = 1
 		self.collision_layer = 2
 		self.collision_mask = 2
-	elif Team == TEAM.ALLY:
+	elif Team == Global.TEAM.ALLY:
 		anims.flip_h = false
 		attack_range.collision_mask = 2
 		self.collision_layer = 1

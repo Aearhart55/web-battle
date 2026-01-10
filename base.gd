@@ -15,14 +15,14 @@ func die():
 	await anims.animation_finished
 	queue_free()
 
-func set_team(team : TEAM):
+func set_team(team : Global.TEAM):
 	Team = team
-	if Team == TEAM.ENEMY:
+	if Team == Global.TEAM.ENEMY:
 		anims.flip_h = true
 		speed *= -1
 		self.collision_layer = 2
 		self.collision_mask = 2
-	elif Team == TEAM.ALLY:
+	elif Team == Global.TEAM.ALLY:
 		anims.flip_h = false
 		self.collision_layer = 1
 		self.collision_mask = 1

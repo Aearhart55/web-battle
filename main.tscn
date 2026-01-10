@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cycy5erh7g2pn"]
+[gd_scene load_steps=5 format=3 uid="uid://cycy5erh7g2pn"]
 
 [ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://basic_unit.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bni7daxj7d7c4" path="res://unit_card_bar.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://kl3jce73cms2" path="res://unit_button.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dxs8jvn6xfpye" path="res://base.tscn" id="4_1bvp3"]
 
@@ -30,6 +31,8 @@ grow_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 alignment = 1
+script = ExtResource("1_1bvp3")
+unit_list = Array[String](["basic", "basic", "empty", "basic", "basic"])
 
 [node name="slot_one" parent="UI/unit_card_bar" instance=ExtResource("1_h2yge")]
 layout_mode = 2
