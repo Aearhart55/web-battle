@@ -4,7 +4,7 @@ extends TextureButton
 @onready var cooldown_timer: Timer = $Timer
 @onready var cost_label: Label = $Label
 
-var unit : String
+var key : String
 var price : int
 var cooldown : float
 var icon : String
@@ -14,20 +14,21 @@ func _process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	if cooldown_timer.is_stopped() and price <= Global.money:
-		Global.summon(unit, Global.TEAM.ALLY)
-		Global.money -= price
+	if key == "empty":
+		return
+	if cooldown_timer.is_stopped() and price <= Global.player_money:
+		Global.summon(key, price, Global.TEAM.ALLY)
 		cooldown_timer.start()
 	
 func set_stats(stats: Array):
-	unit = stats[0]
+	key = stats[4]
 	price = stats[1]
 	cooldown = stats[2]
 	icon = stats[3]
 	
 	texture_normal = load(icon)
 	cost_label.text = "$" + str(price)
-	if unit == "empty":
+	if key == "empty":
 		cost_label.text = ""
 	
 func update_stats(stats: Array):

@@ -51,6 +51,7 @@ layout_mode = 2
 
 [node name="basic unit" parent="." instance=ExtResource("1_0xm2m")]
 position = Vector2(120, 355)
+unit_type = null
 
 [node name="base" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(56, 318)
@@ -58,3 +59,9 @@ position = Vector2(56, 318)
 [node name="base2" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(1083, 318)
 Team = 1
+
+[node name="player_spawn" type="Marker2D" parent="."]
+position = Vector2(53, 356)
+
+[node name="enemy_spawn" type="Marker2D" parent="."]
+position = Vector2(1083, 343)

@@ -1,5 +1,6 @@
 class_name Unit extends Node
 
+@export var unit_type : String
 @export var Team : Global.TEAM
 
 @export_category("Stats")
@@ -51,6 +52,7 @@ func die():
 	self.collision_mask = 0
 	attack_range.enabled = false
 	anims.play("die")
+	Global.player_unit_death(unit_type)
 	await anims.animation_finished
 	queue_free()
 
