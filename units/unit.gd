@@ -1,7 +1,8 @@
 class_name Unit extends Node
 
-@export var unit_type : String
+@export var key : String
 @export var Team : Global.TEAM
+@export var type: Global.TYPE
 
 @export_category("Stats")
 @export var health : int = 3
@@ -16,7 +17,7 @@ class_name Unit extends Node
 var dead = false
 
 func _ready() -> void:
-	set_team(Team)
+	pass
 	
 func _physics_process(delta: float) -> void:
 	if attack_range.is_colliding() and not dead:
@@ -52,7 +53,11 @@ func die():
 	self.collision_mask = 0
 	attack_range.enabled = false
 	anims.play("die")
-	Global.player_unit_death(unit_type)
+	if Team == Global.TEAM.ALLY:
+		Global.player_unit_death(key)
+	elif Team == Global.TEAM.ENEMY:
+		Global.director_unit_death(key, type)
+		
 	await anims.animation_finished
 	queue_free()
 

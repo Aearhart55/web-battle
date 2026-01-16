@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dxs8jvn6xfpye"]
 
-[ext_resource type="Script" uid="uid://ci6kdsjfi2jal" path="res://base.gd" id="1_rpg24"]
-[ext_resource type="Texture2D" uid="uid://rf87sre8ttwj" path="res://farmer_sprites.png" id="2_3vi8l"]
+[ext_resource type="Script" uid="uid://ci6kdsjfi2jal" path="res://units/base/base.gd" id="1_rpg24"]
+[ext_resource type="Texture2D" uid="uid://rf87sre8ttwj" path="res://units/base/farmer_sprites.png" id="2_3vi8l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vi8l"]
 size = Vector2(120, 150)

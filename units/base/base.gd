@@ -1,5 +1,8 @@
 extends Unit
 
+func _ready() -> void:
+	set_team(Team)
+
 func _physics_process(_delta: float) -> void:
 	pass
 

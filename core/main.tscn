@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://cycy5erh7g2pn"]
+
+[ext_resource type="Script" uid="uid://c76aaf4lx80wd" path="res://core/main.gd" id="1_cus2n"]
+[ext_resource type="Script" uid="uid://m0vdm4vxbt8w" path="res://ui elements/ui.gd" id="2_brq4u"]
+[ext_resource type="Script" uid="uid://bni7daxj7d7c4" path="res://ui elements/unit_card_bar.gd" id="3_jsmgm"]
+[ext_resource type="PackedScene" uid="uid://kl3jce73cms2" path="res://ui elements/unit_button.tscn" id="4_xhu5d"]
+[ext_resource type="FontFile" uid="uid://b3g3f7fhyk6ro" path="res://ui elements/Micro5-Regular.ttf" id="5_rayt5"]
+[ext_resource type="PackedScene" uid="uid://dpf060j85153o" path="res://units/basic/basic_unit.tscn" id="6_510js"]
+[ext_resource type="PackedScene" uid="uid://dxs8jvn6xfpye" path="res://units/base/base.tscn" id="7_7ua4h"]
+[ext_resource type="PackedScene" uid="uid://b5afk5hlpjmuv" path="res://core/director.tscn" id="8_brq4u"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_cus2n")
+metadata/_edit_horizontal_guides_ = [400.0]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+script = ExtResource("2_brq4u")
+
+[node name="unit_card_bar" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -508.0
+offset_top = -220.0
+offset_right = 508.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+alignment = 1
+script = ExtResource("3_jsmgm")
+unit_list = Array[String](["basic", "basic", "empty", "basic", "basic"])
+
+[node name="slot_one" parent="UI/unit_card_bar" instance=ExtResource("4_xhu5d")]
+layout_mode = 2
+
+[node name="slot_two" parent="UI/unit_card_bar" instance=ExtResource("4_xhu5d")]
+layout_mode = 2
+
+[node name="slot_three" parent="UI/unit_card_bar" instance=ExtResource("4_xhu5d")]
+layout_mode = 2
+
+[node name="slot_four" parent="UI/unit_card_bar" instance=ExtResource("4_xhu5d")]
+layout_mode = 2
+
+[node name="slot_five" parent="UI/unit_card_bar" instance=ExtResource("4_xhu5d")]
+layout_mode = 2
+
+[node name="player_money" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 14.0
+offset_right = 113.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("5_rayt5")
+theme_override_font_sizes/font_size = 96
+text = "$100"
+
+[node name="dir_money" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 927.0
+offset_top = 14.0
+offset_right = 1067.0
+offset_bottom = 111.0
+theme_override_fonts/font = ExtResource("5_rayt5")
+theme_override_font_sizes/font_size = 96
+text = "$100"
+
+[node name="basic unit" parent="." instance=ExtResource("6_510js")]
+position = Vector2(120, 355)
+type = null
+Team = null
+
+[node name="base" parent="." instance=ExtResource("7_7ua4h")]
+position = Vector2(56, 318)
+
+[node name="base2" parent="." instance=ExtResource("7_7ua4h")]
+position = Vector2(1083, 318)
+key = "\"base\""
+Team = 1
+
+[node name="Director" parent="." instance=ExtResource("8_brq4u")]
+units = Array[String](["basic", "basic"])

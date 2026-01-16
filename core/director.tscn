@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5afk5hlpjmuv"]
+
+[ext_resource type="Script" uid="uid://by8bkc11mm1jm" path="res://core/director.gd" id="1_fbcpg"]
+
+[node name="Director" type="Node" node_paths=PackedStringArray("interest_timer")]
+script = ExtResource("1_fbcpg")
+interest_timer = NodePath("Interest Timer")
+
+[node name="Interest Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
