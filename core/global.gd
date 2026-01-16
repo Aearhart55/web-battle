@@ -1,5 +1,8 @@
 extends Node
 
+signal director_unit_death_type(type: TYPE, add: bool)
+signal player_unit_death_penalty
+
 var basic = preload("res://units/basic/basic_unit.tscn")
 
 # name : unit, cost, cooldown, icon, key
@@ -43,8 +46,11 @@ func get_stats(unit_name: String):
 func player_unit_death(key: String):
 	var unit_value = stats[key][1]
 	player_unit_value -= unit_value
+	
 	director_money -= int(unit_value * director_kill_penalty)
+	player_unit_death_penalty.emit()
 
 func director_unit_death(key: String, type: TYPE):
+	director_unit_death_type.emit(type, false)
 	var unit_value = stats[key][1]
 	player_money += int(unit_value * player_kill_bonus)
