@@ -4,12 +4,14 @@ signal director_unit_death_type(type: TYPE, add: bool)
 signal player_unit_death_penalty
 
 var basic = preload("res://units/basic/basic_unit.tscn")
+var skeleton = preload("res://units/skeleton/skeleton.tscn")
 
 # name : unit, cost, cooldown, icon, key
 var stats = {
 	"" : ["", 0, 0, "res://units/blank_icon.png", "", TYPE.SPECIAL],
 	"empty" : ["empty", 0, 0, "res://units/blank_icon.png", "empty", TYPE.SPECIAL],
-	"basic" : [basic, 50, 3.0, "res://units/basic/basic_unit_icon.png", "basic", TYPE.DAMAGE]
+	"basic" : [basic, 50, 3.0, "res://units/basic/basic_unit_icon.png", "basic", TYPE.DAMAGE],
+	"skeleton" : [skeleton, 25, 2, "res://units/skeleton/skeleton-sprites.png", "skeleton", TYPE.TANK]
 }
 
 enum TEAM {ALLY, ENEMY}

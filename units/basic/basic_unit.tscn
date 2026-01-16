@@ -182,9 +182,8 @@ motion_mode = 1
 script = ExtResource("1_xew3h")
 key = "basic"
 type = 1
-health = null
 speed = 100.0
-damage = null
+damage = 2
 attack_range = NodePath("RayCast2D")
 cooldown = NodePath("Timer")
 anims = NodePath("AnimatedSprite2D")
@@ -199,7 +198,7 @@ shape = SubResource("RectangleShape2D_ruwid")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lvhxn")
-animation = &"die"
+animation = &"idle"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

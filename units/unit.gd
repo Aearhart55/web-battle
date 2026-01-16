@@ -45,10 +45,11 @@ func attack():
 	
 func take_dmg(dmg):
 	health -= dmg
-	if health <= 0:
+	if health <= 0 and not dead:
 		die()
 	
 func die():
+	dead = true
 	self.collision_layer = 0
 	self.collision_mask = 0
 	attack_range.enabled = false
