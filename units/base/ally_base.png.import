@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rf87sre8ttwj"
-path="res://.godot/imported/farmer_sprites.png-c77b5b70ad96ffed4f715c245b602c77.ctex"
+uid="uid://cn68hohu83wga"
+path="res://.godot/imported/ally_base.png-7c41bd44d91d3927945b79da8d34e75e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://units/base/farmer_sprites.png"
-dest_files=["res://.godot/imported/farmer_sprites.png-c77b5b70ad96ffed4f715c245b602c77.ctex"]
+source_file="res://units/base/ally_base.png"
+dest_files=["res://.godot/imported/ally_base.png-7c41bd44d91d3927945b79da8d34e75e.ctex"]
 
 [params]
 

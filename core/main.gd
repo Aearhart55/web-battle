@@ -4,7 +4,7 @@ var player_interest_value:= 5
 var player_interest_timer: Timer = Timer.new()
 
 func _ready() -> void:
-	player_interest_timer.wait_time = 3 / 5.0
+	player_interest_timer.wait_time = 3 / 7.0
 	player_interest_timer.one_shot = false
 	add_child(player_interest_timer)
 	player_interest_timer.autostart = true

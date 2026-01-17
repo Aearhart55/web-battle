@@ -1,45 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxs8jvn6xfpye"]
+[gd_scene load_steps=7 format=3 uid="uid://dxs8jvn6xfpye"]
 
 [ext_resource type="Script" uid="uid://ci6kdsjfi2jal" path="res://units/base/base.gd" id="1_rpg24"]
-[ext_resource type="Texture2D" uid="uid://rf87sre8ttwj" path="res://units/base/farmer_sprites.png" id="2_3vi8l"]
+[ext_resource type="Texture2D" uid="uid://dku4spa34axpt" path="res://units/base/enemy_base.png" id="2_jylu2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vi8l"]
-size = Vector2(120, 150)
+size = Vector2(32, 31)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8rhti"]
-atlas = ExtResource("2_3vi8l")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulgh6"]
+atlas = ExtResource("2_jylu2")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ohhpf"]
-atlas = ExtResource("2_3vi8l")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21bcp"]
-atlas = ExtResource("2_3vi8l")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tpea4"]
-atlas = ExtResource("2_3vi8l")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_42dj3"]
-atlas = ExtResource("2_3vi8l")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2spx"]
+atlas = ExtResource("2_jylu2")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_56f15"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8rhti")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ohhpf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21bcp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tpea4")
+"texture": SubResource("AtlasTexture_ulgh6")
 }],
 "loop": false,
 "name": &"die",
@@ -47,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_42dj3")
+"texture": SubResource("AtlasTexture_u2spx")
 }],
 "loop": false,
 "name": &"hurt",
@@ -55,6 +34,8 @@ animations = [{
 }]
 
 [node name="base" type="CharacterBody2D" node_paths=PackedStringArray("anims")]
+z_index = -1
+scale = Vector2(8, 8)
 script = ExtResource("1_rpg24")
 health = 10
 speed = 0.0
@@ -62,11 +43,10 @@ damage = 0
 anims = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3vi8l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_56f15")
 animation = &"hurt"

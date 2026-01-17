@@ -202,3 +202,5 @@ animation = &"idle"
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

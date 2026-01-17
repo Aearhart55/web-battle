@@ -126,9 +126,6 @@ func update_types(type: Global.TYPE, add:= true):
 		
 	if not biggest_unit.is_empty():
 		type_weights[biggest_unit[2]] += save_weight
-		print(biggest_unit[2])
-	
-	print(type_weights)
 	
 func update_wait_weight():
 	type_weights[4] += .03

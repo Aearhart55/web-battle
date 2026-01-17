@@ -11,7 +11,7 @@ var stats = {
 	"" : ["", 0, 0, "res://units/blank_icon.png", "", TYPE.SPECIAL],
 	"empty" : ["empty", 0, 0, "res://units/blank_icon.png", "empty", TYPE.SPECIAL],
 	"basic" : [basic, 50, 3.0, "res://units/basic/basic_unit_icon.png", "basic", TYPE.DAMAGE],
-	"skeleton" : [skeleton, 25, 2, "res://units/skeleton/skeleton-sprites.png", "skeleton", TYPE.TANK]
+	"skeleton" : [skeleton, 25, 2, "res://units/skeleton/skeleton_icon.png", "skeleton", TYPE.TANK]
 }
 
 enum TEAM {ALLY, ENEMY}
@@ -20,7 +20,7 @@ enum TYPE {TANK, DAMAGE, SUPPORT, SPECIAL}
 var player_money : int = 100
 var player_kill_bonus := 0.1
 
-var director_money : int = 100
+var director_money : int = 0
 var director_leech_percent := 0.2
 var director_kill_penalty := 0.1
 var player_unit_value : int = 0
@@ -28,7 +28,7 @@ var player_unit_value : int = 0
 func summon(key: String, price: int, team: TEAM):
 	var new_unit : Unit = stats[key][0].instantiate()
 	if team == TEAM.ALLY:
-		new_unit.position = Vector2i(53, 356)
+		new_unit.position = Vector2i(128 + randi_range(-10,10), 340 + randi_range(-10,10))
 		player_money -= price
 		player_unit_value += price
 		director_money += price * director_leech_percent
@@ -37,7 +37,7 @@ func summon(key: String, price: int, team: TEAM):
 		
 	if team == TEAM.ENEMY:
 		director_money -= price
-		new_unit.position = Vector2i(1083, 356)
+		new_unit.position = Vector2i(1025 + randi_range(-10,10), 340 + randi_range(-10,10))
 		new_unit.set_team(Global.TEAM.ENEMY)
 		
 	add_child(new_unit)

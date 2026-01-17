@@ -1,12 +1,57 @@
-[gd_scene load_steps=8 format=3 uid="uid://cycy5erh7g2pn"]
+[gd_scene load_steps=17 format=4 uid="uid://cycy5erh7g2pn"]
 
 [ext_resource type="Script" uid="uid://c76aaf4lx80wd" path="res://core/main.gd" id="1_cus2n"]
 [ext_resource type="Script" uid="uid://m0vdm4vxbt8w" path="res://ui elements/ui.gd" id="2_brq4u"]
 [ext_resource type="Script" uid="uid://bni7daxj7d7c4" path="res://ui elements/unit_card_bar.gd" id="3_jsmgm"]
 [ext_resource type="PackedScene" uid="uid://kl3jce73cms2" path="res://ui elements/unit_button.tscn" id="4_xhu5d"]
 [ext_resource type="FontFile" uid="uid://b3g3f7fhyk6ro" path="res://ui elements/Micro5-Regular.ttf" id="5_rayt5"]
+[ext_resource type="Script" uid="uid://ci6kdsjfi2jal" path="res://units/base/base.gd" id="6_jsmgm"]
 [ext_resource type="PackedScene" uid="uid://dxs8jvn6xfpye" path="res://units/base/base.tscn" id="7_7ua4h"]
+[ext_resource type="Texture2D" uid="uid://cn68hohu83wga" path="res://units/base/ally_base.png" id="7_xhu5d"]
 [ext_resource type="PackedScene" uid="uid://b5afk5hlpjmuv" path="res://core/director.tscn" id="8_brq4u"]
+[ext_resource type="Texture2D" uid="uid://c5lotcl5ur8yd" path="res://ui elements/tile_set.png" id="10_xhu5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vi8l"]
+size = Vector2(32, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rayt5"]
+atlas = ExtResource("7_xhu5d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_510js"]
+atlas = ExtResource("7_xhu5d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ua4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rayt5")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_510js")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rayt5"]
+texture = ExtResource("10_xhu5d")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_510js"]
+sources/0 = SubResource("TileSetAtlasSource_rayt5")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cus2n")
@@ -28,9 +73,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -508.0
-offset_top = -220.0
+offset_top = -185.0
 offset_right = 508.0
-offset_bottom = -20.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -60,6 +105,7 @@ offset_left = 20.0
 offset_top = 14.0
 offset_right = 113.0
 offset_bottom = 79.0
+theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("5_rayt5")
 theme_override_font_sizes/font_size = 96
 text = "$100"
@@ -74,13 +120,45 @@ theme_override_fonts/font = ExtResource("5_rayt5")
 theme_override_font_sizes/font_size = 96
 text = "$100"
 
-[node name="base" parent="." instance=ExtResource("7_7ua4h")]
-position = Vector2(56, 318)
+[node name="base" type="CharacterBody2D" parent="." node_paths=PackedStringArray("anims")]
+z_index = -1
+position = Vector2(128, 272)
+scale = Vector2(8, 8)
+script = ExtResource("6_jsmgm")
+health = 10
+speed = 0.0
+damage = 0
+anims = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="base"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3vi8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="base"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7ua4h")
+animation = &"die"
 
 [node name="base2" parent="." instance=ExtResource("7_7ua4h")]
-position = Vector2(1083, 318)
+position = Vector2(1024, 272)
 key = "\"base\""
 Team = 1
 
 [node name="Director" parent="." instance=ExtResource("8_brq4u")]
 units = Array[String](["basic", "basic", "skeleton"])
+
+[node name="Sky" type="TileMapLayer" parent="."]
+z_index = -3
+texture_filter = 1
+position = Vector2(0, 16)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAEAAAABAAUAAAAAAAEAAAACAAUAAAAAAAEAAAADAAUAAAAAAAEAAAAEAAUAAAAAAAEAAAAFAAQAAAAAAAEAAAAGAAQAAAAAAAEAAAAHAAQAAAAAAAEAAAAIAAQAAAAAAAEAAAAJAAUAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAUAAAAAAAEAAAALAAQAAAAAAAEAAAAMAAQAAAAAAAEAAAAMAAUAAAAAAAEAAAANAAUAAAAAAAEAAAAOAAUAAAAAAAEAAAAOAAQAAAAAAAEAAAAOAAMAAAAAAAEAAAAOAAIAAAAAAAEAAAAOAAEAAAABAAEAAAAOAAAAAAACAAEAAAAOAP//AAACAAEAAAAOAP7/AAACAAEAAAANAP7/AAACAAEAAAAMAP7/AAACAAEAAAALAP7/AAACAAEAAAAKAP7/AAACAAEAAAAJAP7/AAACAAEAAAAIAP7/AAACAAEAAAAHAP7/AAACAAEAAAAGAP7/AAACAAEAAAAFAP7/AAACAAEAAAAEAP7/AAACAAEAAAADAP7/AAACAAEAAAACAP7/AAACAAEAAAABAP7/AAACAAEAAAAAAP7/AAACAAEAAAAAAP//AAACAAEAAAAAAAAAAAACAAEAAAAAAAEAAAABAAEAAAAAAAIAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAQAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAAEAAAABAAEAAAAGAAAAAAACAAEAAAAGAP//AAACAAEAAAAFAP//AAACAAEAAAAEAP//AAACAAEAAAADAP//AAACAAEAAAACAP//AAACAAEAAAABAP//AAACAAEAAAABAAAAAAACAAEAAAABAAEAAAABAAEAAAABAAIAAAAAAAEAAAABAAMAAAAAAAEAAAABAAQAAAAAAAEAAAACAAQAAAAAAAEAAAACAAMAAAAAAAEAAAACAAIAAAAAAAEAAAACAAEAAAABAAEAAAACAAAAAAACAAEAAAADAAAAAAACAAEAAAADAAEAAAABAAEAAAADAAIAAAAAAAEAAAADAAMAAAAAAAEAAAADAAQAAAAAAAEAAAAEAAQAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAIAAAAAAAEAAAAEAAEAAAABAAEAAAAEAAAAAAACAAEAAAAFAAAAAAACAAEAAAAFAAEAAAABAAEAAAAFAAIAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAAHAAIAAAAAAAEAAAAHAAEAAAABAAEAAAAHAAAAAAACAAEAAAAHAP//AAACAAEAAAAIAP//AAACAAEAAAAIAAAAAAACAAEAAAAIAAEAAAABAAEAAAAIAAIAAAAAAAEAAAAIAAMAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAABAAEAAAAJAAAAAAACAAEAAAAJAP//AAACAAEAAAAKAP//AAACAAEAAAAKAAAAAAACAAEAAAAKAAEAAAABAAEAAAAKAAIAAAAAAAEAAAAKAAMAAAAAAAEAAAAKAAQAAAAAAAEAAAAJAAQAAAAAAAEAAAALAAMAAAAAAAEAAAALAAIAAAAAAAEAAAALAAEAAAABAAEAAAALAAAAAAACAAEAAAALAP//AAACAAEAAAAMAP//AAACAAEAAAAMAAAAAAACAAEAAAAMAAEAAAABAAEAAAAMAAIAAAAAAAEAAAAMAAMAAAAAAAEAAAANAAMAAAAAAAEAAAANAAIAAAAAAAEAAAANAAEAAAABAAEAAAANAAAAAAACAAEAAAANAP//AAACAAEAAAANAAQAAAAAAAEAAAAFAAUAAAAAAAEAAAAGAAUAAAAAAAEAAAAHAAUAAAAAAAEAAAAIAAUAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_510js")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(0, 16)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAAAAUAAAABAAAAAAABAAUAAAABAAAAAAACAAUAAAABAAAAAAADAAUAAAABAAAAAAAEAAUAAAABAAAAAAAFAAUAAAABAAAAAAAGAAUAAAABAAAAAAAHAAUAAAABAAAAAAAIAAUAAAABAAAAAAAJAAUAAAABAAAAAAAKAAUAAAABAAAAAAALAAUAAAABAAAAAAAMAAUAAAABAAAAAAANAAUAAAABAAAAAAAOAAUAAAABAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAMAAkAAAAAAAAAAAANAAkAAAAAAAAAAAAOAAYAAAAAAAAAAAAOAAcAAAAAAAAAAAAOAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAAFAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAADAAYAAAAAAAAAAAACAAYAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAACAAcAAAAAAAAAAAADAAcAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAcAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAAAAAAAAAAHAAcAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAYAAAAAAAAAAAAJAAYAAAAAAAAAAAAJAAcAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAYAAAAAAAAAAAALAAcAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAMAAcAAAAAAAAAAAAMAAYAAAAAAAAAAAANAAYAAAAAAAAAAAANAAcAAAAAAAAAAAANAAgAAAAAAAAAAAAAAAQAAAACAAAAAAABAAQAAAACAAAAAAACAAQAAAACAAAAAAADAAQAAAACAAAAAAAEAAQAAAACAAAAAAAFAAQAAAACAAAAAAAGAAQAAAACAAAAAAAHAAQAAAACAAAAAAAIAAQAAAACAAAAAAAJAAQAAAACAAAAAAAKAAQAAAACAAAAAAALAAQAAAACAAAAAAAMAAQAAAACAAAAAAANAAQAAAACAAAAAAAOAAQAAAACAAAAAAA=")
+tile_set = SubResource("TileSet_510js")
